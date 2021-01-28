@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>프론트 API 요청</title>
+</head>
+<body>
+<div id="result"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    axios.post('http://localhost:8002/v2/token', {
+        clientSecret: '{{key}}', // 실무에서는 클라이언트 비밀키와 서버측 비밀키를 분리해서 DB를 이용해 관리하는 것이 좋다. 비밀 키는 브라우저 단에서 노출되기 때문
+    })
+        .then((res) => {
+            document.querySelector('#result').textContent = JSON.stringify(res.data);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+</script>
+</body>
+</html>
